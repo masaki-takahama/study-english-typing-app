@@ -1,0 +1,38 @@
+<div class="chat-header">
+  <div class="left-header">
+    <div class="header-title">
+      hogefuga
+    </div>
+  </div>
+  <div class="right-header">
+    <div class="header-button">
+      <a href="#">チャットを終了する</a>
+    </div>
+  </div>
+</div>
+
+<div class="messages">
+ここをタイピングルームにする
+ここにフレーズと画像を出力する
+  <% @phrases.each do |phrase| %>
+    <div class="content_post" style="background-image: url(<%= phrase.image %>);">
+      <p><%= phrase.text %></p>
+      <span class="name">
+        <%= phrase.name %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="form">
+  <div class="form-input">
+    <input class="form-message" placeholder= "type a message">
+  </div>
+  <div class="form-image">
+    <input class="form-message" placeholder= "画像">
+  </div>
+  <div class="form-tag">
+    <input class="form-message" placeholder= "タグ">
+  </div>
+  <input class="form-submit" type="submit" value="送信">
+</div>
