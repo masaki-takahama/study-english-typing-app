@@ -8,106 +8,13 @@
 </div>
 
 <div class="rooms">
-<%# ここから下が仮のリンクタグゾーン、link_to実装したらあとで消す %>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
-    </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
-<%# ここから上が仮のリンクタグゾーン、link_to実装したらあとで消す %>
+<%# ここから下が仮のリンクタグゾーン %>
+          <% User.where.not(id: current_user.id).each do |user| %>
+            <div class="room">
+              <div class="room-name">
+                <%= link_to user.nickname, edit_user_path(current_user) %>
+              </div>
+            </div>
+          <% end %>
+<%# ここから上が仮のリンクタグゾーン %>
 </div>

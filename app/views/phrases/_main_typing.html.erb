@@ -12,27 +12,30 @@
 </div>
 
 <div class="messages">
-ここをタイピングルームにする
-ここにフレーズと画像を出力する
   <% @phrases.each do |phrase| %>
-    <div class="content_post" style="background-image: url(<%= phrase.image %>);">
+     <%= image_tag phrase.image.variant(resize: '400x400'), class: 'message-image' %>
       <p><%= phrase.text %></p>
       <span class="name">
-        <%= phrase.name %>
+        <%= phrase.meaning %>
       </span>
     </div>
   <% end %>
 </div>
 
-<div class="form">
+
+
+<%= form_with model: @phrase, url: phrases_path, method: :post , class: 'form', local: true do |f| %>
   <div class="form-input">
-    <input class="form-message" placeholder= "type a message">
+    <%= f.text_field :text, class: 'form-message', placeholder: 'type a message' %>
+  </div>
+  <div class="form-meaning">
+    <%= f.text_field :meaning, class: 'form-message', placeholder: 'type a message' %>
   </div>
   <div class="form-image">
-    <input class="form-message" placeholder= "画像">
+      <%= f.file_field :image, class: 'form-message' %>
   </div>
   <div class="form-tag">
-    <input class="form-message" placeholder= "タグ">
+    <%= f.collection_select(:tag_id, Tag.all, :id, :name, {}, {class:"form-message"}) %>
   </div>
-  <input class="form-submit" type="submit" value="送信">
-</div>
+  <%= f.submit '送信', class: 'form-submit' %>
+<% end %>
