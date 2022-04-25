@@ -1,7 +1,7 @@
 class PhrasesController < ApplicationController
 
 def index
-  @phrases = Phrase.all
+  @phrases = Phrase.includes(:user)
   # あとでallからインクルードに変更して表示するフレーズもユーザーに関連するものだけを取得して表示するようにしたい
 end
 
@@ -14,6 +14,7 @@ def create
   if @phrase.save
     redirect_to root_path
   else
+    @phrase = Phrase.new(phrase_params)
     render :new
   end
 end
