@@ -48,7 +48,7 @@
 
 .typing {
   background-color: #FFFFFF;
-  width: calc(100vw - 250px);
+  width: calc(100vw - 100px);
 }
 
 .chat-header {
@@ -73,11 +73,70 @@
   color: darkred;
   padding: 20px;
 }
-.messages {
-  background-color: #FAFAFA;
+.phrase-box {
+  /* background-color: #FAFAFA; */
+  background: linear-gradient(70deg,white, #d3ffa8,white,white, pink,white  );
+  border-radius: 40px;
+  text-align: center;
   height: calc(100vh - 100px - 90px);
   padding: 46px 40px 0;
+  width: 100%;
+  max-width: 950px;
+  min-width: 650px;
+  margin: 0 auto;
+  position: relative;
 }
+
+.message-image{
+  width:100%;
+  max-width: 900px;
+  min-width: 600px;
+  border-radius: 40px;
+}
+
+.phrase{
+  background-color: rgba(246, 251, 250, 0.7);
+  text-align: center;
+  justify-content: center;
+  height: 130px;
+  width: calc(100% - 60px);
+  display: flex;
+  align-items: flex-end;
+  border-radius: 40px;
+  position: absolute;
+  top: calc((100% - 100px) / 1.22);
+  left: 30px;
+  font-size: 20px;
+  font-weight: 200;
+  padding-top: 0px;;
+  margin:0;
+}
+
+.type-word{
+  font-size:50px;
+  font-family: 'Elsie Swash Caps', cursive;
+  text-align:center;
+  line-height:60px;
+  color: transparent;
+  background : rgba(0,0,0,1);
+  /* background : rgb(134, 5, 5); */
+/* 正解のキーを押せたら上の色に変える */
+  text-shadow : 
+      0 0 0.1em rgba(255,255,255,0.05),
+      0.01em 0.04em 0.03em rgba(255,255,255,0.4);
+  -webkit-background-clip : text;
+}
+
+.meaning{
+  font-size:20px;
+  font-weight: bold;
+  font-family: "M PLUS Rounded 1c";
+  color: rgb(232, 154, 210);
+  text-shadow: 1px 2px 2px #ffffff,
+               -1px -1px 2px #306fec;
+  position: bottom;
+}
+
 .form {
   background-color: #DDDDDD;
   height: 90px;
@@ -98,10 +157,11 @@
 
 .form-image {
   background-color: white;
-  width: 140px;
   margin-left: 15px;
   padding: 0 20px;
-
+  width: 90%;
+  margin: 0 auto;
+  
 }
 .form-tag {
   background-color: white;

@@ -11,15 +11,15 @@
   </div>
 </div>
 
-<div class="messages">
-  <% @phrases.each do |phrase| %>
-     <%= image_tag phrase.image.variant(resize: '400x400'), class: 'message-image' %>
-      <p><%= phrase.text %></p>
-      <span class="name">
-        <%= phrase.meaning %>
-      </span>
-    </div>
-  <% end %>
+<div class="phrase-box">
+      <input id="text" name="arr_json" type="hidden" value=<%= @arr_json %> class='arr_json'/>
+
+     <%= image_tag @phrase.image.variant(resize: '900x900'), class: 'message-image' %>
+     <div class="phrase">
+          <p class="type-word" id="start"><%= @phrase.text %></p>
+     </div>
+          <p class="meaning"><%= @phrase.meaning %></p>
+
 </div>
 
 

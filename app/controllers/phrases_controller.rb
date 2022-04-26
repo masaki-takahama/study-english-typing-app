@@ -3,6 +3,9 @@ class PhrasesController < ApplicationController
 def index
   @phrases = Phrase.includes(:user)
   # あとでallからインクルードに変更して表示するフレーズもユーザーに関連するものだけを取得して表示するようにしたい
+  @phrase = Phrase.find(2)
+  @arr_json = @phrase.text.to_json.html_safe
+  # 画面表示用に１つだけフレーズを取得しているので、表示を整えて、タイピング機能つけたら@phrase = Phrase.find(1)は消す
 end
 
 def new
