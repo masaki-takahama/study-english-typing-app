@@ -12,7 +12,10 @@
 </div>
 
 <div class="phrase-box">
-      <input id="text" name="arr_json" type="hidden" value=<%= @arr_json %> class='arr_json'/>
+<%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+<div id="user" data-user-status="<%= @users.to_json %>"></div>
+<%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+
 
      <%= image_tag @phrase.image.variant(resize: '900x900'), class: 'message-image' %>
      <div class="phrase">
