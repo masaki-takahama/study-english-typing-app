@@ -1,29 +1,43 @@
 <div class="chat-header">
   <div class="left-header">
     <div class="header-title">
-      hogefuga
+      <p class="title-top">Studying English By Typing</p>
+      <p class="title-bottom">タイピングで英語を勉強しよう</p>
     </div>
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">チャットを終了する</a>
+      <a href="#">Quit the Game</a>
     </div>
   </div>
 </div>
 
-<div class="phrase-box">
-<%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
-<div id="user" data-user-status="<%= @users.to_json %>"></div>
-<%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
 
 
-     <%= image_tag @phrase.image.variant(resize: '900x900'), class: 'message-image' %>
-     <div class="phrase">
-          <p class="type-word" id="start"><%= @phrase.text %></p>
-     </div>
-          <p class="meaning"><%= @phrase.meaning %></p>
 
+<div class="main-center">
+
+  <div class="phrase-box" id="phraseBox">
+      <%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+      <div id="phrase" data-phrase-status="<%= @phraseAll.to_json %>"></div>
+      <%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+
+
+          <% num = 1 %>
+      
+          <%# <%= image_tag @phraseAll[num].image.variant(resize: '900x900'), class: 'message-image' %> 
+
+          <img id="image" class="message-image" src="assets/start.png">
+      
+      <div class="phrase">
+            <p class="type-word" id="start">Press the key to start the game.</p>
+            <%# <p class="type-word" id="start"><%= @phraseAll[num].text </p> %>
+      </div>
+            <p class="meaning" id="mean">キーを押すと始まるよ</p>
+
+  </div>
 </div>
+
 
 
 
@@ -35,10 +49,25 @@
     <%= f.text_field :meaning, class: 'form-message', placeholder: 'type a message' %>
   </div>
   <div class="form-image">
-      <%= f.file_field :image, class: 'form-message' %>
+    <label>
+      <%= f.file_field :image, class: 'input-default' %>
+      <div class="boxFileSelect">
+        <img src="assets/camera.png"alt="画像" width="60" height="50">
+      </div>
+    </label>
   </div>
   <div class="form-tag">
     <%= f.collection_select(:tag_id, Tag.all, :id, :name, {}, {class:"form-message"}) %>
   </div>
-  <%= f.submit '送信', class: 'form-submit' %>
+  <% if user_signed_in? %>
+    <div class="form-button">
+    <%= f.submit 'SEND', class: 'form-submit' %>
+    </div>
+  <% else %>
+    <div class="form-button">
+    <p class='form-submit'>無理</p>
+    </div>
+  <% end %>
+
 <% end %>
+

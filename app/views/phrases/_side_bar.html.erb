@@ -1,20 +1,74 @@
 <div class="side-bar-header">
-  <div class="header-name">
-        <%= link_to current_user.nickname, edit_user_path(current_user) %>
-  </div>
-  <div class="create-room">
-    <a href="#">チャットを作成する</a>
-  </div>
+  <% if user_signed_in? %>
+      <div class="align">
+          <div class="create-room">
+            <%= link_to destroy_user_session_path, method: :delete, data:{confirm:"ログアウトしますか？"} do %>
+              Log<br>out
+            <% end %>
+          </div>
+          <div class="create-room">
+            <%= link_to user_registration_path, method: :delete, data:{confirm:"本当にあなたのユーザー情報を抹消しますか？"} do %>
+              Sign<br>out
+            <% end %>
+          </div>
+          <div class="create-room">
+            <%= link_to  "edit_user_path(current_user)"  do %>
+              Edit
+            <% end %>
+          </div>
+      </div>
+    
+
+
+  <% else %>
+      <div class="align">
+          <div class="create-room">
+            <%= link_to new_user_registration_path, method: :get do %>
+             Sign<br>in
+            <% end %>
+          </div>
+          <div class="create-room">
+            <%= link_to new_user_session_path, method: :get do %>
+             Log<br>in
+            <% end %>
+          </div>
+      </div>
+  <% end %>
 </div>
 
 <div class="rooms">
 <%# ここから下が仮のリンクタグゾーン %>
-          <% User.where.not(id: current_user.id).each do |user| %>
+          <%# <% User.where.not(id: current_user.id).each do |user| %> 
+          <% @users.each do |user| %>
             <div class="room">
               <div class="room-name">
-                <%= link_to user.nickname, edit_user_path(current_user) %>
+                <%= link_to user.nickname, "#"%>
               </div>
             </div>
           <% end %>
 <%# ここから上が仮のリンクタグゾーン %>
+
 </div>
+
+<div class="side-bottom">
+    <div class="logo">
+      <%= link_to  "https://master.tech-camp.in/v2/curriculums"  do %>
+       <img  src="assets/techcamp.png"alt="画像" width="50" height="50">
+      <% end %>
+    </div>
+  <div class="logo">
+  <img  src="assets/beer.png"alt="画像" width="60" height="50">
+  </div>
+  <div class="logo">
+  <img  src="assets/coffee.png"alt="画像" width="60" height="50">
+  </div>
+    <div class="logo">
+      <%= link_to  "https://master.tech-camp.in/v2/curriculums"  do %>
+       <img  src="assets/techcamp.png"alt="画像" width="50" height="50">
+      <% end %>
+    </div>
+
+
+
+</div>
+

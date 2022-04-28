@@ -5,12 +5,13 @@ def index
   @phrase = Phrase.find(3)
   # 画面表示用に１つだけフレーズを取得しているので、表示を整えて、タイピング機能つけたら@phrase = Phrase.find(1)は消す
 
-
+  @users = User.all
   @phrases = Phrase.includes(:user)
-  @users = []
+  @phraseAll = []
+  @image = []
 
   @phrases.each do |phrase|
-    @users.push(phrase)
+    @phraseAll.push(phrase)
   end
 
 
