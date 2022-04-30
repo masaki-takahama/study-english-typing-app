@@ -17,8 +17,9 @@ function typing (){
     allUserId.push(element.user_id)
   });
   
-  let Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
-  
+  // let Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
+  Q_No = 0;
+
   let Q_i = 0;//回答初期値・現在単語どこまで合っているか判定している文字番号
   let Q_l = allText[Q_No].length;//計算用の文字の長さ
   
@@ -62,7 +63,11 @@ function typing (){
     if (Q_l-Q_i === 0){ //全部正解したら
       new Audio('assets/ok.mp3').play(); // 正解の音声再生;
   
-      Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
+      // Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
+      Q_No++;//次の問題を出題する
+      if (Q_No == allText.length){
+        Q_No = 0;
+      }
       Q_i = 0;//回答初期値・現在どこまで合っているか判定している文字番号
       Q_l = allText[Q_No].length;//計算用の文字の長さ
 
