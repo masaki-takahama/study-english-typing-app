@@ -7,12 +7,12 @@ def index
 
   @users = User.all
   @phrases = Phrase.includes(:user)
-  @phraseAll = []
   @image = []
+  # @phraseAll = []
 
-  @phrases.each do |phrase|
-    @phraseAll.push(phrase)
-  end
+  # @phrases.each do |phrase|
+  #   @phraseAll.push(phrase)
+  # end
 
 
 

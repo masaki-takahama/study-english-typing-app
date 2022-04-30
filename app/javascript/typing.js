@@ -25,13 +25,8 @@ function typing (){
   
   const Q_text = document.getElementById("start");
   const Q_meaning = document.getElementById("mean");
-  const Q_image = document.getElementById("image");
+  const wrapImage = document.getElementById("wrapImage");
   
-  let images = [
-    "assets/love.png",
-    "assets/love2.png",
-    "assets/fourteen.png"
-  ];
   
   window.addEventListener("keydown", push_Keydown);
   
@@ -41,7 +36,9 @@ function typing (){
             
             Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
             Q_meaning.innerHTML = allMeaning[Q_No]; //日本語訳を表示
-            Q_image.src = images[Q_No];
+            wrapImage.children[Q_No].style.display = 'block';
+
+
             /* 単語の読み上げ */
 
             var speak = new SpeechSynthesisUtterance();
@@ -59,9 +56,10 @@ function typing (){
 
     Q_i++; //判定する文章に１足す
     Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
-
+    
     if (Q_l-Q_i === 0){ //全部正解したら
       new Audio('assets/ok.mp3').play(); // 正解の音声再生;
+      wrapImage.children[Q_No].style.display = 'none'; //今、表示している画像を消す
   
       // Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
       Q_No++;//次の問題を出題する
@@ -70,7 +68,6 @@ function typing (){
       }
       Q_i = 0;//回答初期値・現在どこまで合っているか判定している文字番号
       Q_l = allText[Q_No].length;//計算用の文字の長さ
-
 
       Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //新たな問題を書き出す
 

@@ -19,15 +19,15 @@
 
   <div class="phrase-box" id="phraseBox">
       <%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
-      <div id="phrase" data-phrase-status="<%= @phraseAll.to_json %>"></div>
+      <div id="phrase" data-phrase-status="<%= @phrases.to_json %>"></div>
       <%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
 
-
-          <% num = 1 %>
-      
-          <%# <%= image_tag @phraseAll[num].image.variant(resize: '900x900'), class: 'message-image' %> 
-
-          <img id="image" class="message-image" src="assets/top.png">
+           <div id="wrapImage">
+            <% @phrases.each do |phrase| %>
+             <%= image_tag phrase.image.variant(resize: '900x900'), class: 'message-image', id: 'image' %> 
+            <% end %>
+           </div>
+          <%# <img id="image" class="message-image" src="assets/top.png"> %>
       
       <div class="phrase">
             <p class="type-word" id="start">Press the key to start the game.</p>
