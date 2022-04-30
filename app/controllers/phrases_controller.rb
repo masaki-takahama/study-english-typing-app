@@ -1,18 +1,11 @@
 class PhrasesController < ApplicationController
 
 def index
-  # あとでallからインクルードに変更して表示するフレーズもユーザーに関連するものだけを取得して表示するようにしたい
-  @phrase = Phrase.find(3)
-  # 画面表示用に１つだけフレーズを取得しているので、表示を整えて、タイピング機能つけたら@phrase = Phrase.find(1)は消す
+
 
   @users = User.all
   @phrases = Phrase.includes(:user)
   @image = []
-  # @phraseAll = []
-
-  # @phrases.each do |phrase|
-  #   @phraseAll.push(phrase)
-  # end
 
 
 

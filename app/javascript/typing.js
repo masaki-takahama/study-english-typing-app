@@ -26,6 +26,7 @@ function typing (){
   const Q_text = document.getElementById("start");
   const Q_meaning = document.getElementById("mean");
   const wrapImage = document.getElementById("wrapImage");
+  const topimage = document.getElementById("image1");
   
   
   window.addEventListener("keydown", push_Keydown);
@@ -33,7 +34,7 @@ function typing (){
   function push_Keydown(event){
     let keyCode = event.key;
     if (Q_l == Q_l-Q_i){
-            
+            topimage.style.display = 'none';   
             Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
             Q_meaning.innerHTML = allMeaning[Q_No]; //日本語訳を表示
             wrapImage.children[Q_No].style.display = 'block';

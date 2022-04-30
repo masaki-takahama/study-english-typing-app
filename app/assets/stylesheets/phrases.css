@@ -545,6 +545,9 @@ margin-top: 5px;
 #image{
 display: none;
 }
+#image1{
+display: block;
+}
 
 /* #image:nth-child(2){
 display: none;
