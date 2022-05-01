@@ -21,7 +21,6 @@ def new
 end
 
 def create
-  binding.pry
   @phrase = Phrase.new(phrase_params)
   if @phrase.save
     redirect_to root_path
