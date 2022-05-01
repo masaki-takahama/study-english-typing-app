@@ -21,6 +21,7 @@ def new
 end
 
 def create
+  binding.pry
   @phrase = Phrase.new(phrase_params)
   if @phrase.save
     redirect_to root_path
@@ -33,8 +34,9 @@ end
 private
 
 def phrase_params
-  params.require(:phrase).permit(:text, :meaning, :tag_id, :image).merge(user_id: current_user.id)
+  params.permit(:text, :meaning, :tag_id, :image).merge(user_id: current_user.id)
 end
 
 end
+
 
