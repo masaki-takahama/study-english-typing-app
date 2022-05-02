@@ -21,6 +21,7 @@
       <%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
       <div id="phrase" data-phrase-status="<%= @phrases.to_json %>"></div>
       <%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+            <p class="meaning" id="mean">キーを押すと始まるよ</p>
 
            <div id="wrapImage">
             <% @phrases.each do |phrase| %>
@@ -33,7 +34,6 @@
             <p class="type-word" id="start">Press the key to start the game.</p>
             <%# <p class="type-word" id="start"><%= @phraseAll[num].text </p> %>
       </div>
-            <p class="meaning" id="mean">キーを押すと始まるよ</p>
 
   </div>
 </div>

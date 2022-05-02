@@ -352,7 +352,12 @@ margin-top: 5px;
   font-weight: bold;
   font-family: "M PLUS Rounded 1c";
   color: black;
-  position: bottom;
+  margin-top: 0;
+  position: absolute;
+  bottom: 0;
+  left:  0;                   /* 左からの位置指定 */
+  right:  0;                  /* 右からの位置指定 */
+  margin:  0,auto;             /* 位置調整と組み合わせて上下中央に */
 }
 
 .form {
