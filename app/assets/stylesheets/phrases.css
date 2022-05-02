@@ -31,7 +31,7 @@ margin-top: 5px;
 .header-name a{
   text-decoration: none;
   font-size:16px;
-  font-family: 'Elsie Swash Caps', cursive;
+ font-family: 'Comfortaa', cursive;
 	text-align:center;
 	line-height:0.95em;
 	font-weight:bold;
@@ -146,7 +146,7 @@ margin-top: 5px;
   padding: 0 20px;
   font-size: 20px;
   /* font-family: "M PLUS Rounded 1c"; */
-  font-family: 'Elsie Swash Caps', cursive;
+ font-family: 'Comfortaa', cursive;
   overflow: scroll;
   margin-bottom: 0;
 }
@@ -334,7 +334,7 @@ margin-top: 5px;
 
 .type-word{
   font-size:45px;
-  font-family: 'Elsie Swash Caps', cursive;
+ font-family: 'Comfortaa', cursive;
   text-align:center;
   line-height:60px;
   color: transparent;
