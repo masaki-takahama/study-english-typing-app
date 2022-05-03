@@ -1,5 +1,5 @@
 function typing (){
-
+  
   
   var phrases = document.getElementById('phrase');
   var phraseHash = JSON.parse(phrases.getAttribute('data-phrase-status'));
@@ -19,7 +19,7 @@ function typing (){
   
   // let Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
   Q_No = 0;
-
+  
   let Q_i = 0;//回答初期値・現在単語どこまで合っているか判定している文字番号
   let Q_l = allText[Q_No].length;//計算用の文字の長さ
   
@@ -27,10 +27,23 @@ function typing (){
   const Q_meaning = document.getElementById("mean");
   const wrapImage = document.getElementById("wrapImage");
   const topimage = document.getElementById("image1");
+  const gamebutton = document.getElementById("gamebutton");
+  const buttonback = document.getElementById("buttonback");
+
+   gamebutton.addEventListener('click', function(){
+     if (this.innerHTML == "QUIT THE GAME"){
+       this.innerHTML = "START THE GAME";
+       buttonback.setAttribute("style", "background-color:#7ae1f3;")
+      }else{
+        this.innerHTML = "QUIT THE GAME";
+        buttonback.setAttribute("style", "background-color:#fd6c6c;")
+        window.addEventListener("keydown", push_Keydown);
+     }
+  });
   
   
-  window.addEventListener("keydown", push_Keydown);
-  
+
+
   function push_Keydown(event){
     let keyCode = event.key;
     if (Q_l == Q_l-Q_i){
