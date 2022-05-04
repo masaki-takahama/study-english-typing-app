@@ -34,7 +34,13 @@ function typing (){
      if (this.innerHTML == "QUIT THE GAME"){
        this.innerHTML = "START THE GAME";
        buttonback.setAttribute("style", "background-color:#7ae1f3;")
+       window.location.reload();
       }else{
+        window.document.onkeydown = function(evt){
+          if ((evt.which == 32)
+          ){ evt.which = null;
+          return false;}
+         }
         this.innerHTML = "QUIT THE GAME";
         buttonback.setAttribute("style", "background-color:#fd6c6c;")
         window.addEventListener("keydown", push_Keydown);
