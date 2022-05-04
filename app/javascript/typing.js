@@ -38,6 +38,8 @@ function typing (){
         this.innerHTML = "QUIT THE GAME";
         buttonback.setAttribute("style", "background-color:#fd6c6c;")
         window.addEventListener("keydown", push_Keydown);
+        Q_text.innerHTML = "Press the key to start the game.";
+        Q_meaning.innerHTML = "キーを押すと始まるよ";
      }
   });
   
