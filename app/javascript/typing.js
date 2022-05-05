@@ -10,6 +10,7 @@ function typing (){
   let allUserId = [];
   
   
+  
   phraseHash.forEach(function(element){
     allText.push(element.text),//問題文
     allMeaning.push(element.meaning),
@@ -17,33 +18,37 @@ function typing (){
     allUserId.push(element.user_id)
   });
   
+  let allQ_No = []
   let lastQ_No = allText.length;
-  // let Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
-  let Q_No = 0;
+  for (let i = 0; i < lastQ_No; i++) {
+    allQ_No.push(i);
+  }
+  let randomNo = Math.floor( Math.random() * allQ_No.length);
+  let Q_No = allQ_No[randomNo];//問題をランダムで出題する
+  // let Q_No = 0;
   
   let Q_i = 0;//回答初期値・現在単語どこまで合っているか判定している文字番号
   let Q_l = allText[Q_No].length;//計算用の文字の長さ
-  
+  let totalcha = 0;
+  let miss = 0;
+
   const Q_text = document.getElementById("start");
   const Q_meaning = document.getElementById("mean");
   const wrapImage = document.getElementById("wrapImage");
   const topimage = document.getElementById("image1");
+  const endimage = document.getElementById("image2");
   const gamebutton = document.getElementById("gamebutton");
   const buttonback = document.getElementById("buttonback");
   const count = document.getElementById("count");
 
 
-   gamebutton.addEventListener('click', function(){
+   gamebutton.addEventListener('click', function(e){
      if (this.innerHTML == "QUIT THE GAME"){
        this.innerHTML = "START THE GAME";
        buttonback.setAttribute("style", "background-color:#7ae1f3;")
        window.location.reload();
       }else{
-        window.document.onkeydown = function(evt){
-          if ((evt.which == 32)
-          ){ evt.which = null;
-          return false;}
-         }
+        e.target.blur()
         this.innerHTML = "QUIT THE GAME";
         buttonback.setAttribute("style", "background-color:#fd6c6c;")
         window.addEventListener("keydown", push_Keydown);
@@ -63,6 +68,7 @@ function typing (){
             Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
             Q_meaning.innerHTML = allMeaning[Q_No]; //日本語訳を表示
             wrapImage.children[Q_No].style.display = 'block';
+            totalcha += allText[Q_No].length;
 
 
             /* 単語の読み上げ */
@@ -78,33 +84,48 @@ function typing (){
     }
 
 
-  if (allText[Q_No].charAt(Q_i) == keyCode) { //押したキーが合っていたら
+      if (allText[Q_No].charAt(Q_i) == keyCode) { //押したキーが合っていたら
 
-    Q_i++; //判定する文章に１足す
-    Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
-    
-    if (Q_l-Q_i === 0){ //全部正解したら
-      new Audio('assets/ok.mp3').play(); // 正解の音声再生;
-      wrapImage.children[Q_No].style.display = 'none'; //今、表示している画像を消す
-  
-      // Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
-      Q_No++;//次の問題を出題する
-      lastQ_No--;//問題数カウントダウン
-      if (Q_No == allText.length){
-        Q_No = 0;
-        lastQ_No = allText.length;
+        Q_i++; //判定する文章に１足す
+        Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
+        
+        if (Q_l-Q_i === 0){ //全部正解したら
+          new Audio('assets/ok.mp3').play(); // 正解の音声再生;
+          wrapImage.children[Q_No].style.display = 'none'; //今、表示している画像を消す
+      
+          allQ_No.splice(randomNo,1);
+          randomNo = Math.floor( Math.random() * allQ_No.length);
+          Q_No = allQ_No[randomNo];//問題をランダムで出題する
+        
+          // Q_No++;//出題形式が順番通りの時の、次の問題を出題するためのカウントアップ
+          lastQ_No--;//問題数カウントダウン
+          count.innerHTML = lastQ_No;//残りの問題数表示
+
+          // if (Q_No == allText.length){
+          //   Q_No = 0;
+          //   lastQ_No = allText.length;
+          // } 出題を永遠に繰り返すための記述。必要なければ消す。2022.5/5
+          
+          Q_i = 0;//回答初期値・現在どこまで合っているか判定している文字番号
+          if (lastQ_No == 0){
+            endimage.style.display = 'block';
+            Q_text.innerHTML = `ミスタイプは${miss}、正答率は${Math.round((totalcha/(totalcha + miss))*1000)/10}％だよ`; //最後のメッセージ
+            Q_meaning.innerHTML = "わっ...あ   すごいねっ";
+
+            };//全問クリアしたらリロードする
+
+          Q_l = allText[Q_No].length;//計算用の文字の長さ
+          Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //新たな問題を書き出す
+
+
+        }
+        else {
+        new Audio('assets/good.mp3').play(); // 音声再生;
+        }
+      }else{
+        miss++;
       }
-      Q_i = 0;//回答初期値・現在どこまで合っているか判定している文字番号
-      Q_l = allText[Q_No].length;//計算用の文字の長さ
 
-      Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //新たな問題を書き出す
-      count.innerHTML = lastQ_No;//残りの問題数表示
-
-    }
-    else {
-    new Audio('assets/good.mp3').play(); // 音声再生;
-  }
-  }
   }
 
 };
