@@ -17,8 +17,9 @@ function typing (){
     allUserId.push(element.user_id)
   });
   
+  let lastQ_No = allText.length;
   // let Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
-  Q_No = 0;
+  let Q_No = 0;
   
   let Q_i = 0;//回答初期値・現在単語どこまで合っているか判定している文字番号
   let Q_l = allText[Q_No].length;//計算用の文字の長さ
@@ -29,6 +30,8 @@ function typing (){
   const topimage = document.getElementById("image1");
   const gamebutton = document.getElementById("gamebutton");
   const buttonback = document.getElementById("buttonback");
+  const count = document.getElementById("count");
+
 
    gamebutton.addEventListener('click', function(){
      if (this.innerHTML == "QUIT THE GAME"){
@@ -55,6 +58,7 @@ function typing (){
   function push_Keydown(event){
     let keyCode = event.key;
     if (Q_l == Q_l-Q_i){
+            count.innerHTML = lastQ_No;//残りの問題数表示
             topimage.style.display = 'none';   
             Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //問題を書き出す
             Q_meaning.innerHTML = allMeaning[Q_No]; //日本語訳を表示
@@ -85,13 +89,16 @@ function typing (){
   
       // Q_No = Math.floor( Math.random() * allText.length);//問題をランダムで出題する
       Q_No++;//次の問題を出題する
+      lastQ_No--;//問題数カウントダウン
       if (Q_No == allText.length){
         Q_No = 0;
+        lastQ_No = allText.length;
       }
       Q_i = 0;//回答初期値・現在どこまで合っているか判定している文字番号
       Q_l = allText[Q_No].length;//計算用の文字の長さ
 
       Q_text.innerHTML = allText[Q_No].substring(Q_i, Q_l); //新たな問題を書き出す
+      count.innerHTML = lastQ_No;//残りの問題数表示
 
     }
     else {

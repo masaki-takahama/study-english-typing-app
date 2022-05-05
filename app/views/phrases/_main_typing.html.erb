@@ -21,6 +21,8 @@
       <%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
       <div id="phrase" data-phrase-status="<%= @phrases.to_json %>"></div>
       <%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+
+            <div class="count" id="count">0</div>
             <p class="meaning" id="mean">スタートボタンを押してね</p>
 
            <div id="wrapImage">
@@ -70,4 +72,3 @@
   <% end %>
 
 <% end %>
-
