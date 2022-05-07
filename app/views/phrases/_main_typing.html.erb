@@ -45,6 +45,7 @@
 
 
 <%= form_with model: @phrase, url: phrases_path, method: :post , class: 'form', local: true do |f| %>
+  <% if user_signed_in? %>
   <div class="form-input">
     <%= f.text_field :text, class: 'form-message', placeholder: 'English phrase' %>
   </div>
@@ -62,13 +63,29 @@
   <div class="form-tag">
     <%= f.collection_select(:tag_id, Tag.all, :id, :name, {}, {class:"form-message"}) %>
   </div>
-  <% if user_signed_in? %>
     <div class="form-button">
     <%= f.submit 'SEND', class: 'form-submit' %>
     </div>
   <% else %>
+    <div class="form-input">
+    <%= f.text_field :text, class: 'form-message', placeholder: 'You can post a phrase after logging in.' %>
+  </div>
+  <div class="form-meaning">
+    <%= f.text_field :meaning, class: 'form-message', placeholder: 'ログインしたらフレーズを投稿できるよ' %>
+  </div>
+  <div class="form-image">
+    <label>
+      <%= f.file_field :image, class: 'input-default' %>
+      <div class="boxFileSelect">
+        <img src="assets/camera.jpg"alt="画像" width="60" height="50">
+      </div>
+    </label>
+  </div>
+  <div class="form-tag">
+    <%= f.collection_select(:tag_id, Tag.all, :id, :name, {}, {class:"form-message"}) %>
+  </div>
     <div class="form-button">
-    <p class='form-submit'>SEND</p>
+    <p class='form-submit'>　　　　　</p>
     </div>
   <% end %>
 
