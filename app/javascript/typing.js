@@ -1,6 +1,5 @@
 function typing (){
   
-  
   var phrases = document.getElementById('phrase');
   var phraseHash = JSON.parse(phrases.getAttribute('data-phrase-status'));
   
