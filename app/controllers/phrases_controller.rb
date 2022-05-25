@@ -5,13 +5,6 @@ def index
 
   @users = User.all
   @phrases = Phrase.includes(:user)
-  @image = []
-
-
-
-
-
-
 
 
 end
