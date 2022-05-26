@@ -16,29 +16,43 @@
 
 
 <div class="main-center">
+  <% if @phrases.empty? %>
+      <div class="phrase-box" id="phraseBox">
 
-  <div class="phrase-box" id="phraseBox">
-      <%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
-      <div id="phrase" data-phrase-status="<%= @phrases.to_json %>"></div>
-      <%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+                <div class="count" id="count">0</div>
+                <p class="meaning" id="mean">フレーズがないよ！投稿してね！</p>
 
-            <div class="count" id="count">0</div>
-            <p class="meaning" id="mean">スタートボタンを押してね</p>
+            <img id="image1" class="message-image" src="/assets/top3.jpg"> 
+          
+          <div class="phrase">
+                <p class="type-word" id="start">There is no phrase! Post it!</p>
+                <%# <p class="type-word" id="start"><%= @phraseAll[num].text </p> %>
+          </div>
+      </div>
+  <% else %>
+        <div class="phrase-box" id="phraseBox">
+          <%# 下でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
+          <div id="phrase" data-phrase-status="<%= @phrases.to_json %>"></div>
+          <%# 上でrailsのコントローラーからハッシュの配列（Phraseのレコード全部）を受け取ってJavaScriptに渡している %>
 
-           <div id="wrapImage">
-            <% @phrases.each do |phrase| %>
-             <%= image_tag phrase.image.variant(resize: '900x900'), class: 'message-image', id: 'image' %> 
-            <% end %>
-           </div>
-         <img id="image1" class="message-image" src="/assets/top2.jpg"> 
-         <img id="image2" class="message-image" src="/assets/end.jpg"> 
-      
-      <div class="phrase">
-            <p class="type-word" id="start">Press the start button.</p>
-            <%# <p class="type-word" id="start"><%= @phraseAll[num].text </p> %>
+                <div class="count" id="count">0</div>
+                <p class="meaning" id="mean">スタートボタンを押してね</p>
+
+              <div id="wrapImage">
+                <% @phrases.each do |phrase| %>
+                <%= image_tag phrase.image.variant(resize: '900x900'), class: 'message-image', id: 'image' %> 
+                <% end %>
+              </div>
+            <img id="image1" class="message-image" src="/assets/top2.jpg"> 
+            <img id="image2" class="message-image" src="/assets/end.jpg"> 
+          
+          <div class="phrase">
+                <p class="type-word" id="start">Press the start button.</p>
+                <%# <p class="type-word" id="start"><%= @phraseAll[num].text </p> %>
+          </div>
       </div>
 
-  </div>
+  <% end %>
 </div>
 
 
