@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
 
   def show
-    user = User.find(params[:id])
     @users = User.all
-    @phrases = user.phrases
+    user = User.find(params[:id])
+    if user.nickname == 'FEELING・EMOTION'
+        @phrases = Phrase.where(tag_id: 10)
+    else
+      @phrases = user.phrases
+    end
+
   end
 
 
